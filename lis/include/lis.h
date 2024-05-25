@@ -1,3 +1,6 @@
+#ifndef LIS_H
+#define LIS_H
+
 #include <vector>
 #include <iostream>
 #include <cstddef>
@@ -85,6 +88,10 @@ public:
 
     }
 
+    std::vector<std::tuple<std::vector<T>, std::vector<size_t>, std::vector<int>>> GetTable(){
+        return resultTable_;
+    }
+
 private:
     size_t aSize_;
     size_t dSize_;
@@ -95,3 +102,5 @@ private:
     std::vector<std::tuple<std::vector<T>, std::vector<size_t>, std::vector<int>>> resultTable_;
     std::vector<std::tuple<size_t, T, int>> solutionTable_;
 };
+
+#endif // LIS_H
