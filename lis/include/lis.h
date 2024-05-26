@@ -48,16 +48,20 @@ public:
         int MLIS = *std::max_element(begin(d_), end(d_));
         
         std::vector<int> o;
+        solutionTable_.resize(MLIS);
         for (int i = d_.size() - 1; i >= 0; --i){
             if (d_[i] == MLIS){
                 o.push_back(i);
+                solutionTable_[0] = {i, a_[i], p_[i]};
                 break;
             }
         }
         int u;
+        
         for (int i = 0; i < MLIS - 1; ++i){
             u = p_[o.back()];
             o.push_back(u);
+            solutionTable_[i+1] = {o.back(), a_[o.back()], u};
         }
         std::reverse(o.begin(), o.end());
         for (auto& o_i: o){
@@ -88,8 +92,12 @@ public:
 
     }
 
-    std::vector<std::tuple<std::vector<T>, std::vector<size_t>, std::vector<int>>> GetTable(){
+    std::vector<std::tuple<std::vector<T>, std::vector<size_t>, std::vector<int>>> GetTableIR(){
         return resultTable_;
+    }
+
+    std::vector<std::tuple<size_t, T, int>> GetTableCR(){
+        return solutionTable_;
     }
 
 private:
