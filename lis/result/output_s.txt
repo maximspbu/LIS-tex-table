@@ -1,0 +1,10 @@
+\begin{center}
+\begin{tabular} {| c |>{\columncolor{pink}}c| c |}
+\hline
+\rowcolor{gray!50} $j$ & $a[j]$ & $p[j]$\\\hline
+$7$ & $3$ & $6$\\\hline
+$6$ & $2$ & $6$\\\hline
+$5$ & $1$ & $5$\\\hline
+$2$ & $0$ & $2$\\\hline
+\end{tabular}
+\end{center}
