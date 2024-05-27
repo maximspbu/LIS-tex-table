@@ -1,7 +1,0 @@
-cmake_minimum_required(VERSION 3.12)
-project(tex VERSION 1.0 LANGUAGES C CXX)
-set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_STANDARD 20)
-set(SOURCES source/main.cpp source/tex.cpp)
-include_directories("include/")
-add_executable(tex  ${SOURCES})
