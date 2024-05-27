@@ -6,10 +6,10 @@ int main() {
     lis.CalculateValuesBUAnalysis();
     lis.BuildOptimalSolution();
     TEX<int> tex;
-    tex.MakeTableIR(lis.GetTableIR());
+    tex.MakeIntermediateTable(lis.GetTableIR());
     tex.WriteResult("../result/output_i.txt");
     std::cout << tex.GetResult() << '\n';
-    tex.MakeTableCR(lis.GetTableCR());
+    tex.MakeSolutionTable(lis.GetTableCR());
     tex.WriteResult("../result/output_s.txt");
     std::cout << tex.GetResult() << '\n';
     return 0;

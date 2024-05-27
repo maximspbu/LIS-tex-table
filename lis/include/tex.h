@@ -15,7 +15,7 @@ public:
 
     }
 
-    void MakeTableIR(const std::vector<std::tuple<std::vector<T>, std::vector<size_t>, std::vector<int>>>& table){
+    void MakeIntermediateTable(const std::vector<std::tuple<std::vector<T>, std::vector<size_t>, std::vector<int>>>& table){
         /**
          * @brief       create tex code string
          * 
@@ -58,7 +58,7 @@ public:
         result_ += "\\end{tabular}\n\\end{center}\n";
     }
 
-    void MakeTableCR(const std::vector<std::tuple<size_t, T, int>>& table){
+    void MakeSolutionTable(const std::vector<std::tuple<size_t, T, int>>& table){
         /**
          * @brief       create tex code string
          * 
