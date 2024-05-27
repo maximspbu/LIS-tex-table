@@ -16,6 +16,9 @@ public:
         p_.resize(aSize_);
         d_.resize(aSize_);
         resultTable_.resize(aSize_);
+    }
+
+    void CalculateValuesBUAnalysis(){
         std::vector<size_t> j_i;
         size_t indMaxValue = 0;
         T minValue = *std::min_element(begin(a_), end(a_));
@@ -45,51 +48,44 @@ public:
             forIndMaxValue = minValue;
             resultTable_[i] = {a_, d_, p_};
         }
-        int MLIS = *std::max_element(begin(d_), end(d_));
-        
+        MLIS_ = *std::max_element(begin(d_), end(d_));
+        // for (auto& o_i: o){
+        //     std::cout << o_i << '\n';
+        // }
+        // std::cout << '\n';
+    }
+
+    void BuildOptimalSolution(){
         std::vector<int> o;
-        solutionTable_.resize(MLIS);
+        solutionTable_.resize(MLIS_);
         for (int i = d_.size() - 1; i >= 0; --i){
-            if (d_[i] == MLIS){
+            if (d_[i] == MLIS_){
                 o.push_back(i);
                 solutionTable_[0] = {i, a_[i], p_[i]};
                 break;
             }
         }
         int u;
-        
-        for (int i = 0; i < MLIS - 1; ++i){
+        for (int i = 0; i < MLIS_ - 1; ++i){
             u = p_[o.back()];
             o.push_back(u);
             solutionTable_[i+1] = {o.back(), a_[o.back()], u};
         }
         std::reverse(o.begin(), o.end());
-        for (auto& o_i: o){
-            std::cout << o_i << '\n';
-        }
-        std::cout << '\n';
-        for (auto& i: resultTable_){
-            for (auto& k: std::get<(0)>(i)){
-                std::cout << k << ' ';
-            }
-            std::cout << '\n';
-            for (auto& k: std::get<(1)>(i)){
-                std::cout << k << ' ';
-            }
-            std::cout << '\n';
-            for (auto& k: std::get<(2)>(i)){
-                std::cout << k << ' ';
-            }
-            std::cout << '\n';
-        }
-    }
-
-    void LCS(const std::vector<T>& input){
-
-    }
-
-    void LCIS(){
-
+        // for (auto& i: resultTable_){
+        //     for (auto& k: std::get<(0)>(i)){
+        //         std::cout << k << ' ';
+        //     }
+        //     std::cout << '\n';
+        //     for (auto& k: std::get<(1)>(i)){
+        //         std::cout << k << ' ';
+        //     }
+        //     std::cout << '\n';
+        //     for (auto& k: std::get<(2)>(i)){
+        //         std::cout << k << ' ';
+        //     }
+        //     std::cout << '\n';
+        // }
     }
 
     std::vector<std::tuple<std::vector<T>, std::vector<size_t>, std::vector<int>>> GetTableIR(){
@@ -101,6 +97,7 @@ public:
     }
 
 private:
+    int MLIS_;
     size_t aSize_;
     size_t dSize_;
     size_t pSize_;

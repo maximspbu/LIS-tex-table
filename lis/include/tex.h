@@ -29,8 +29,9 @@ public:
             s += "|c ";
             ++a;
         }
-        result_ = std::string("\\begin{center}\n") + std::string("\\begin{tabular} {| c| ") + s + std::string("| }\n") + std::string("\\hline\n");
-        result_ += "$ $ \\rowcolor{Gray} ";
+        result_ = std::string("\\begin{center}\n") + std::string("\\begin{tabular} {|>{\\columncolor{pink}}c ") + s + std::string("| }\n");
+        result_ += std::string("\\cline{2-") + std::format("{}", table.size() + 1) + std::string("}\n");
+        result_ += "\\rowcolor{gray!50} \\multicolumn{ 0}{ c|}{\\cellcolor{white}{}} ";
         for (size_t i = 0; i < table.size(); ++i){
             result_ += std::format("& {}", i);
         }
@@ -67,18 +68,25 @@ public:
         */
         std::string s;
         size_t a = 0;
-        while (a < 2){
-            s += "|c ";
+        while (a < 3){
+            if (a == 1){
+                s+= ">{\\columncolor{pink}}c| ";
+            } else {
+                s += "c |";
+            }
             ++a;
         }
-        result_ = std::string("\\begin{center}\n") + std::string("\\begin{tabular} {| c| ") + s + std::string("| }\n") + std::string("\\hline\n");
+        result_ = std::string("\\begin{center}\n") + std::string("\\begin{tabular} {| ") + s + std::string("}\n") + std::string("\\hline\n");
+        result_ += "\\rowcolor{gray!50} ";
         result_ += "$j$ & $a[j]$ & $p[j]$";
         result_ += "\\\\\\hline\n";
+        std::string st;
         for (auto& i: table){
-            result_ += std::format("${}$", std::get<(0)>(i));
-            result_ += std::format(" & ${}$", std::get<(1)>(i));
-            result_ += std::format(" & ${}$", std::get<(2)>(i));
+            std::apply([this, &st](auto&&... args){((st += std::format("${}$ & ", args)), ...);}, i);
+            st = st.substr(0, st.size() - 3);
+            result_ += st;
             result_ += "\\\\\\hline\n";
+            st.clear();
         }
         result_ += "\\end{tabular}\n\\end{center}\n";
     }

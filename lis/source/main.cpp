@@ -3,6 +3,8 @@
 
 int main() {
     LIS<int> lis({2, 1, 0, 4, 5, 1, 2, 3});
+    lis.CalculateValuesBUAnalysis();
+    lis.BuildOptimalSolution();
     TEX<int> tex;
     tex.MakeTableIR(lis.GetTableIR());
     tex.WriteResult("../result/output_i.txt");

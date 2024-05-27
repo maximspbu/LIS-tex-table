@@ -1,7 +1,7 @@
 \begin{center}
-\begin{tabular} {| c| |c |c | }
+\begin{tabular} {| c |>{\columncolor{pink}}c| c |}
 \hline
-$j$ & $a[j]$ & $p[j]$\\\hline
+\rowcolor{gray!50} $j$ & $a[j]$ & $p[j]$\\\hline
 $7$ & $3$ & $6$\\\hline
 $6$ & $2$ & $6$\\\hline
 $5$ & $1$ & $5$\\\hline
